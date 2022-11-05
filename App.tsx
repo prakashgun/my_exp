@@ -2,6 +2,7 @@ import { Button, createTheme, lightColors, ThemeProvider } from '@rneui/themed';
 import React from 'react';
 import { Platform } from 'react-native';
 import { Icon } from '@rneui/themed';
+import AppNavigator from './src/components/AppNavigator';
 
 const theme = createTheme({
   lightColors: {
@@ -15,10 +16,7 @@ const theme = createTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      {/* This button's color will now be the default iOS / Android blue. */}
-      <Button title="My Button" />
-      <Icon
-        name='rowing' />
+      <AppNavigator />
     </ThemeProvider>
   );
 }
