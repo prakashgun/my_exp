@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { addAccount, deleteAccount, getAccount, getAccounts } from '../../../src/common/dbQueries'
+import { addAccount, deleteAccount, getAccount, getAccounts } from '../src/common/dbQueries'
 
 const accounts = [
     {
