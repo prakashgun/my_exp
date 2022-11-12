@@ -2,9 +2,11 @@ import {render, screen, fireEvent, waitFor} from '@testing-library/react-native'
 import { act } from 'react-test-renderer'
 import App from '../App'
 
+jest.useFakeTimers()
+
+
 describe('Main flow', ()=>{
     test('Shows correct title',()=>{
-        jest.useFakeTimers()
         const {getByText} = render(<App />)
 
         act(()=>{
@@ -16,7 +18,6 @@ describe('Main flow', ()=>{
     })
 
     test('Go to add screen', async()=>{
-        jest.useFakeTimers()
         const {getByText} = render(<App />)
 
         act(()=>{
