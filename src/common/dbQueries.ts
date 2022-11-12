@@ -46,7 +46,7 @@ export const getAccountByName = async (name: string): Promise<AccountInterface |
         return accounts.find((data: AccountInterface) => data.name === name)
     } catch (error) {
         console.log(error)
-        return {}
+        return
     }
 }
 
