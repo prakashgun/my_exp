@@ -6,14 +6,15 @@ import { addAccount } from '../common/dbQueries'
 import uuid from 'react-uuid'
 
 
-const AddAccount = () => {
-    const navigation = useNavigation<any>()
+const AddAccount = ({navigation}: any) => {
     const [name, setName] = useState<string>('')
     const [balance, setBalance] = useState<any>()
     const [nameError, setNameError] = useState<string>('')
     const [balanceError, setBalanceError] = useState<string>('')
 
     const onAddItemPress = async () => {
+        setNameError('')
+        setBalanceError('')
 
         if (name.length < 2) {
             setNameError('Name should have atleast two characters')
@@ -32,7 +33,7 @@ const AddAccount = () => {
         })
 
         console.log('Account saved')
-        navigation.goBack()
+        navigation.navigate('AccountList')
     }
 
     return (
