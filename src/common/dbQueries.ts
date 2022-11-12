@@ -28,18 +28,18 @@ export const getAccounts = async (): Promise<AccountInterface[]> => {
     }
 }
 
-export const getAccount = async (id: string): Promise<AccountInterface | {}> => {
+export const getAccount = async (id: string): Promise<AccountInterface|undefined> => {
     try {
         const jsonValue = await AsyncStorage.getItem('@accounts')
         const accounts = jsonValue != null ? JSON.parse(jsonValue) : []
         return accounts.find((data: AccountInterface) => data.id === id)
     } catch (error) {
         console.log(error)
-        return {}
+        return
     }
 }
 
-export const getAccountByName = async (name: string): Promise<AccountInterface | {}> => {
+export const getAccountByName = async (name: string): Promise<AccountInterface | undefined> => {
     try {
         const jsonValue = await AsyncStorage.getItem('@accounts')
         const accounts = jsonValue != null ? JSON.parse(jsonValue) : []

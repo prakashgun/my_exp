@@ -70,21 +70,4 @@ describe('Main flow', ()=>{
         expect(await screen.getByText('Bank 1')).toBeTruthy()
         expect(await screen.getByText('Add')).toBeTruthy()
     }) 
-
-    test('Cannot account', async ()=>{
-        render(<App />)
-
-        act(()=>{
-            jest.runAllTimers()
-        })
-
-        fireEvent.press(screen.getByText('Add'))
-        fireEvent.changeText(screen.getByLabelText('Name'), 'Bank 1')
-        fireEvent.changeText(screen.getByLabelText('Balance'), '1000')
-        fireEvent.press(screen.getByText('Save'))
-
-        expect(await screen.findByText('Accounts')).toBeTruthy()
-        expect(await screen.getByText('Bank 1')).toBeTruthy()
-        expect(await screen.getByText('Add')).toBeTruthy()
-    }) 
 })
