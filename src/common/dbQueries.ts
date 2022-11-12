@@ -39,6 +39,18 @@ export const getAccount = async (id: string): Promise<AccountInterface | {}> => 
     }
 }
 
+export const getAccountByName = async (name: string): Promise<AccountInterface | {}> => {
+    try {
+        const jsonValue = await AsyncStorage.getItem('@accounts')
+        const accounts = jsonValue != null ? JSON.parse(jsonValue) : []
+        return accounts.find((data: AccountInterface) => data.name === name)
+    } catch (error) {
+        console.log(error)
+        return {}
+    }
+}
+
+
 export const deleteAccount = async (id: string) => {
     try {
         const jsonValue = await AsyncStorage.getItem('@accounts')

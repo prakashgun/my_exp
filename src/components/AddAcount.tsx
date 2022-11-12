@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import { Alert, StyleSheet, View } from 'react-native'
 import { Button, Header, Input } from '@rneui/themed'
-import { addAccount } from '../common/dbQueries'
+import { addAccount, getAccountByName } from '../common/dbQueries'
 import uuid from 'react-uuid'
 
 
@@ -24,6 +24,11 @@ const AddAccount = ({navigation}: any) => {
         if (!balance) {
             setBalanceError('Account balance cannot be empty')
             return
+        }
+
+        if(await getAccountByName(name)){
+            setNameError('This account name already exists')
+            return 
         }
 
         await addAccount({
