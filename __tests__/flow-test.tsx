@@ -4,41 +4,39 @@ import App from '../App'
 
 jest.useFakeTimers()
 
-
 describe('Main flow', ()=>{
     test('Shows correct title',()=>{
-        const {getByText} = render(<App />)
+        render(<App />)
 
         act(()=>{
             jest.runAllTimers()
         })
 
-        expect(getByText('Accounts')).toBeTruthy()
-        expect(getByText('Add')).toBeTruthy()
+        expect(screen.getByText('Accounts')).toBeTruthy()
+        expect(screen.getByText('Add')).toBeTruthy()
     })
 
-    test('Go to add screen', async()=>{
-        const {getByText} = render(<App />)
+    test('Go to add screen', ()=>{
+        render(<App />)
 
         act(()=>{
             jest.runAllTimers()
         })
 
-        fireEvent(await getByText('Add'), 'press')
-        expect(await getByText('Add Account')).toBeTruthy()
+        fireEvent(screen.getByText('Add'), 'press')
+        expect(screen.getByText('Add Account')).toBeTruthy()
     })
 
-    test('Account name validation', async()=>{
-        const {getByText} = render(<App />)
+    test('Account name validation', ()=>{
+        render(<App />)
 
         act(()=>{
             jest.runAllTimers()
         })
 
-        fireEvent.press(await getByText('Add'))
-        fireEvent.press(await getByText('Save'))
+        fireEvent.press(screen.getByText('Add'))
+        fireEvent.press(screen.getByText('Save'))
 
-        expect(await getByText('Name should have atleast two characters')).toBeTruthy()
+        expect(screen.getByText('Name should have atleast two characters')).toBeTruthy()
     })
-
 })
