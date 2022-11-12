@@ -39,4 +39,18 @@ describe('Main flow', ()=>{
 
         expect(screen.getByText('Name should have atleast two characters')).toBeTruthy()
     })
+
+    test('Account balance validation', ()=>{
+        render(<App />)
+
+        act(()=>{
+            jest.runAllTimers()
+        })
+
+        fireEvent.press(screen.getByText('Add'))
+        fireEvent.changeText(screen.getByLabelText('Name'), 'Bank 1')
+        fireEvent.press(screen.getByText('Save'))
+
+        expect(screen.getByText('Account balance cannot be empty')).toBeTruthy()
+    })    
 })

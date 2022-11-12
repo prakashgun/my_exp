@@ -43,12 +43,14 @@ const AddAccount = () => {
             />
             <Input
                 placeholder="Name"
+                accessibilityLabel="Name"
                 leftIcon={{ type: 'font-awesome', name: 'bank' }}
                 onChangeText={setName}
                 errorMessage={nameError}
             />
             <Input
                 placeholder="Balance"
+                accessibilityLabel="Balance"
                 leftIcon={{ type: 'material-icons', name: 'account-balance-wallet' }}
                 keyboardType="numeric"
                 onChangeText={setBalance}
