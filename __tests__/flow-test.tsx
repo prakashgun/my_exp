@@ -28,4 +28,17 @@ describe('Main flow', ()=>{
         expect(await getByText('Add Account')).toBeTruthy()
     })
 
+    test('Account name validation', async()=>{
+        const {getByText} = render(<App />)
+
+        act(()=>{
+            jest.runAllTimers()
+        })
+
+        fireEvent.press(await getByText('Add'))
+        fireEvent.press(await getByText('Save'))
+
+        expect(await getByText('Name should have atleast two characters')).toBeTruthy()
+    })
+
 })

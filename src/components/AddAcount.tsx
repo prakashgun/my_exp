@@ -10,16 +10,18 @@ const AddAccount = () => {
     const navigation = useNavigation<any>()
     const [name, setName] = useState<string>('')
     const [balance, setBalance] = useState<any>()
+    const [nameError, setNameError] = useState<string>('')
+    const [balanceError, setBalanceError] = useState<string>('')
 
     const onAddItemPress = async () => {
 
         if (name.length < 2) {
-            Alert.alert('Name should have atleast two characters')
+            setNameError('Name should have atleast two characters')
             return
         }
 
         if (!balance) {
-            Alert.alert('Account balance cannot be empty')
+            setBalanceError('Account balance cannot be empty')
             return
         }
 
@@ -43,12 +45,14 @@ const AddAccount = () => {
                 placeholder="Name"
                 leftIcon={{ type: 'font-awesome', name: 'bank' }}
                 onChangeText={setName}
+                errorMessage={nameError}
             />
             <Input
                 placeholder="Balance"
                 leftIcon={{ type: 'material-icons', name: 'account-balance-wallet' }}
                 keyboardType="numeric"
                 onChangeText={setBalance}
+                errorMessage={balanceError}
             />
             <Button title="Save" onPress={onAddItemPress} />
         </View>
