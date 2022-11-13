@@ -1,6 +1,8 @@
+import { NavigationContainer } from '@react-navigation/native'
 import {render, screen, fireEvent, waitFor} from '@testing-library/react-native'
 import { act } from 'react-test-renderer'
 import App from '../App'
+import AccountList from '../src/components/AccountList'
 
 jest.useFakeTimers()
 
@@ -69,5 +71,21 @@ describe('Main flow', ()=>{
         expect(await screen.findByText('Accounts')).toBeTruthy()
         expect(await screen.getByText('Bank 1')).toBeTruthy()
         expect(await screen.getByText('Add')).toBeTruthy()
-    }) 
+    })
+
+    // test('Detailed account', async ()=>{
+    //     render(<NavigationContainer>
+    //         <AccountList />
+    //     </NavigationContainer>)
+
+    //     act(()=>{
+    //         jest.runAllTimers()
+    //     })
+
+    //     fireEvent.press(screen.getByText('Bank 1'))
+
+    //     expect(await screen.findByText('Account Detail')).toBeTruthy()
+
+
+    // })
 })

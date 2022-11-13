@@ -1,8 +1,9 @@
-import { Button, createTheme, lightColors, ThemeProvider } from '@rneui/themed';
+import { NavigationContainer } from '@react-navigation/native';
+import { createTheme, lightColors, ThemeProvider } from '@rneui/themed';
 import React from 'react';
 import { Platform } from 'react-native';
-import { Icon } from '@rneui/themed';
 import AppNavigator from './src/components/AppNavigator';
+
 
 const theme = createTheme({
   lightColors: {
@@ -16,7 +17,9 @@ const theme = createTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <AppNavigator />
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
