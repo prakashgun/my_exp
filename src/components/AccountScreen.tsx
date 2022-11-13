@@ -14,7 +14,6 @@ const AccountScreen = ({ navigation, route }: any) => {
     const setAccountFromDb = async () => {
         const account = await getAccount(route.params.id)
         setAccount(account)
-        console.log(await getAccount(route.params.id))
     }
 
     const deleteAccountFromDb = async () => {

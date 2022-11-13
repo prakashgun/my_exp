@@ -1,10 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import {render, screen, fireEvent, waitFor} from '@testing-library/react-native'
 import { act } from 'react-test-renderer'
 import App from '../App'
 import AccountList from '../src/components/AccountList'
+import AccountScreen from '../src/components/AccountScreen'
+import AddAccount from '../src/components/AddAccount'
 
 jest.useFakeTimers()
+
 
 describe('Main flow', ()=>{
     test('Shows correct title',()=>{
@@ -73,19 +77,32 @@ describe('Main flow', ()=>{
         expect(await screen.getByText('Add')).toBeTruthy()
     })
 
-    // test('Detailed account', async ()=>{
-    //     render(<NavigationContainer>
-    //         <AccountList />
-    //     </NavigationContainer>)
+    test('Detailed account', async ()=>{
+        render(<App />)
 
-    //     act(()=>{
-    //         jest.runAllTimers()
-    //     })
+        act(()=>{
+            jest.runAllTimers()
+        })
 
-    //     fireEvent.press(screen.getByText('Bank 1'))
+        fireEvent.press(screen.getByText('Bank 1'))
 
-    //     expect(await screen.findByText('Account Detail')).toBeTruthy()
+        expect(await screen.findByText('Account Detail')).toBeTruthy()
+        expect(await screen.findByText('Delete')).toBeTruthy()
+    })
 
+    test('Delete account', async ()=>{
+        render(<App />)
 
-    // })
+        act(()=>{
+            jest.runAllTimers()
+        })
+
+        fireEvent.press(screen.getByText('Bank 1'))
+
+        expect(await screen.findByText('Account Detail')).toBeTruthy()
+
+        fireEvent.press(screen.getByText('Delete'))
+        expect(await screen.findByText('Accounts')).toBeTruthy()
+
+    })
 })
