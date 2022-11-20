@@ -6,6 +6,7 @@ import App from '../App'
 import AccountList from '../src/components/AccountList'
 import AccountScreen from '../src/components/AccountScreen'
 import AddAccount from '../src/components/AddAccount'
+import {Alert} from 'react-native'
 
 jest.useFakeTimers()
 
@@ -97,12 +98,14 @@ describe('Main flow', ()=>{
             jest.runAllTimers()
         })
 
+        jest.spyOn(Alert, 'alert')
+
         fireEvent.press(screen.getByText('Bank 1'))
 
         expect(await screen.findByText('Account Detail')).toBeTruthy()
 
         fireEvent.press(screen.getByText('Delete'))
-        expect(await screen.findByText('Accounts')).toBeTruthy()
+        expect(Alert.alert).toBeCalled()
 
     })
 })
