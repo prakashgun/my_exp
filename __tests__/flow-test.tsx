@@ -108,4 +108,20 @@ describe('Main flow', ()=>{
         expect(Alert.alert).toBeCalled()
 
     })
+
+    test('Go to Menu', async ()=>{
+        render(<App />)
+
+        act(()=>{
+            jest.runAllTimers()
+        })
+
+        fireEvent.press(screen.getByTestId('menu'))
+
+        // expect(await screen.findByText('Accounts')).toBeTruthy()
+
+        expect(await screen.getByText('Categories')).toBeTruthy()
+
+        screen.debug()
+    })
 })

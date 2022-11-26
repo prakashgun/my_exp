@@ -5,6 +5,7 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 import { getAccounts } from '../common/dbQueries'
 import AccountInterface from '../interfaces/AccountInterface'
 import AccountItem from './AccountItem'
+import CommonHeader from './CommonHeader'
 
 
 const AccountList = ({ navigation }: any) => {
@@ -24,10 +25,7 @@ const AccountList = ({ navigation }: any) => {
     return (
         <View style={styles.container}>
             <ScrollView >
-                <Header
-                    leftComponent={{ onPress: () => navigation.navigate('Menu') }}
-                    centerComponent={{ text: 'Accounts' }}
-                />
+            <CommonHeader heading="Accounts" />
                 {
                     accounts && accounts.map((account) => (
                         <AccountItem

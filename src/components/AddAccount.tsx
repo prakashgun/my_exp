@@ -44,7 +44,7 @@ const AddAccount = ({navigation}: any) => {
     return (
         <View>
             <Header
-                leftComponent={{ onPress: () => navigation.navigate('Menu') }}
+                leftComponent={{ onPress: () => navigation.navigate('Menu'), 'icon': 'menu' }}
                 centerComponent={{ text: 'Add Account' }}
             />
             <Input

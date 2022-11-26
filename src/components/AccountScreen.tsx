@@ -56,7 +56,7 @@ const AccountScreen = ({ navigation, route }: any) => {
     return (
         <View>
             <Header
-                leftComponent={{ onPress: () => navigation.navigate('Menu') }}
+                leftComponent={{ onPress: () => navigation.navigate('Menu'), 'icon': 'menu' }}
                 centerComponent={{ text: 'Account Detail' }}
             />
             <ScrollView >
