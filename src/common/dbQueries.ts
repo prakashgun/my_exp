@@ -20,8 +20,8 @@ export const createTables = async () => {
     // await executeQuery('DROP TABLE IF EXISTS categories')
     // await executeQuery('DROP TABLE IF EXISTS accounts')
 
-    console.log('Creating tables...')
-    
+    // console.log('Creating tables...')
+
     await executeQuery(
         `CREATE TABLE IF NOT EXISTS accounts (
             id TEXT NOT NULL UNIQUE,
