@@ -1,16 +1,11 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import {render, screen, fireEvent, waitFor} from '@testing-library/react-native'
+import { fireEvent, render, screen } from '@testing-library/react-native'
+import { Alert } from 'react-native'
 import { act } from 'react-test-renderer'
 import App from '../App'
-import AccountList from '../src/components/AccountList'
-import AccountScreen from '../src/components/AccountScreen'
-import AddAccount from '../src/components/AddAccount'
-import {Alert} from 'react-native'
 
 jest.useFakeTimers()
 
-jest.mock('../src/common/dbQueries',()=>{
+jest.mock('../src/common/dbQueries', () => {
     const originalModule = jest.requireActual('../src/common/dbQueries');
 
     const accounts = [
@@ -22,21 +17,21 @@ jest.mock('../src/common/dbQueries',()=>{
     ]
 
     //Mock the default export and named export 'foo'
-  return {
-    __esModule: true,
-    ...originalModule,
-    default: jest.fn(() => ''),
-    getAccounts: jest.fn(() => accounts)
-  };
+    return {
+        __esModule: true,
+        ...originalModule,
+        default: jest.fn(() => ''),
+        getAccounts: jest.fn(() => accounts)
+    };
 
 })
 
 
-describe('Main flow', ()=>{
-    test('Shows correct title',()=>{
+describe('Main flow', () => {
+    test('Shows correct title', () => {
         render(<App />)
 
-        act(()=>{
+        act(() => {
             jest.runAllTimers()
         })
 
@@ -44,10 +39,10 @@ describe('Main flow', ()=>{
         expect(screen.getByText('Add')).toBeTruthy()
     })
 
-    test('Go to add screen', ()=>{
+    test('Go to add screen', () => {
         render(<App />)
 
-        act(()=>{
+        act(() => {
             jest.runAllTimers()
         })
 
@@ -55,10 +50,10 @@ describe('Main flow', ()=>{
         expect(screen.getByText('Add Account')).toBeTruthy()
     })
 
-    test('Account name validation', ()=>{
+    test('Account name validation', () => {
         render(<App />)
 
-        act(()=>{
+        act(() => {
             jest.runAllTimers()
         })
 
@@ -68,10 +63,10 @@ describe('Main flow', ()=>{
         expect(screen.getByText('Name should have atleast two characters')).toBeTruthy()
     })
 
-    test('Account balance validation', ()=>{
+    test('Account balance validation', () => {
         render(<App />)
 
-        act(()=>{
+        act(() => {
             jest.runAllTimers()
         })
 
@@ -82,10 +77,10 @@ describe('Main flow', ()=>{
         expect(screen.getByText('Account balance cannot be empty')).toBeTruthy()
     })
 
-    test('Saving account', async ()=>{
+    test('Saving account', async () => {
         render(<App />)
 
-        act(()=>{
+        act(() => {
             jest.runAllTimers()
         })
 
@@ -102,10 +97,10 @@ describe('Main flow', ()=>{
         expect(await screen.getByText('Add')).toBeTruthy()
     })
 
-    test('Detailed account', async ()=>{
+    test('Detailed account', async () => {
         render(<App />)
 
-        act(()=>{
+        act(() => {
             jest.runAllTimers()
         })
 
@@ -116,10 +111,10 @@ describe('Main flow', ()=>{
 
     })
 
-    test('Delete account', async ()=>{
+    test('Delete account', async () => {
         render(<App />)
 
-        act(()=>{
+        act(() => {
             jest.runAllTimers()
         })
 
