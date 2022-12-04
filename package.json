@@ -59,7 +59,8 @@
       "@testing-library/jest-native/extend-expect"
     ],
     "setupFiles": [
-      "<rootDir>/jest/react-navigation-setup.js"
+      "<rootDir>/jest/react-navigation-setup.js",
+      "<rootDir>/jest/react-native-sqlite-storage-setup.js"
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation|react-test-renderer|@rneui)"
