@@ -14,6 +14,19 @@ jest.mock('../src/common/dbQueries', () => {
             name: 'Bank 1',
             initial_balance: 1000
         }
+    ]    
+    
+    const categories = [
+        {
+            id: '1',
+            name: 'Transportation',
+            initial_balance: 200
+        },
+        {
+            id: '2',
+            name: 'Food',
+            initial_balance: 150
+        },
     ]
 
     //Mock the default export and named export 'foo'
@@ -21,7 +34,8 @@ jest.mock('../src/common/dbQueries', () => {
         __esModule: true,
         ...originalModule,
         default: jest.fn(() => ''),
-        getAccounts: jest.fn(() => accounts)
+        getAccounts: jest.fn(() => accounts),
+        getCategories: jest.fn(() => categories)
     };
 
 })
@@ -158,5 +172,7 @@ describe('Main flow', () => {
         fireEvent.press(screen.getByText('Categories'))
 
         expect(await screen.findByText('Category Items')).toBeTruthy()
+        expect(await screen.getByText('Transportation')).toBeTruthy()
+        expect(await screen.getByText('Food')).toBeTruthy()
     })
 })
