@@ -101,4 +101,33 @@ describe('Main flow', ()=>{
         expect(await screen.getByText('1,000')).toBeTruthy()
         expect(await screen.getByText('Add')).toBeTruthy()
     })
+
+    test('Detailed account', async ()=>{
+        render(<App />)
+
+        act(()=>{
+            jest.runAllTimers()
+        })
+
+        fireEvent.press(screen.getByText('Bank 1'))
+
+
+        expect(await screen.findByText('Account Details')).toBeTruthy()
+
+    })
+
+    test('Delete account', async ()=>{
+        render(<App />)
+
+        act(()=>{
+            jest.runAllTimers()
+        })
+
+        jest.spyOn(Alert, 'alert')
+
+        fireEvent.press(screen.getByText('Bank 1'))
+        // expect(await screen.getByText('Bank 1')).toBeTruthy()
+        expect(await screen.findByText('Account Details')).toBeTruthy()
+
+    })
 })

@@ -1,10 +1,11 @@
 import { useIsFocused } from '@react-navigation/native'
 import { Header, PricingCard } from '@rneui/themed'
 import React, { useEffect, useState } from 'react'
-import { Alert, ScrollView, StyleSheet, View } from 'react-native'
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { deleteAccount, getAccount } from '../common/dbQueries'
 import { getCurrentBalance, roundCurrency, thousands_separators } from '../common/utils'
 import AccountInterface from '../interfaces/AccountInterface'
+import CommonHeader from './CommonHeader'
 
 const AccountScreen = ({ navigation, route }: any) => {
     const [account, setAccount] = useState<AccountInterface>()
@@ -18,7 +19,7 @@ const AccountScreen = ({ navigation, route }: any) => {
 
     const deleteAccountFromDb = async () => {
         await deleteAccount(route.params.id)
-        console.log('Account deleted')
+        // console.log('Account deleted')
         navigation.navigate('AccountList')
     }
 
@@ -55,10 +56,7 @@ const AccountScreen = ({ navigation, route }: any) => {
 
     return (
         <View>
-            <Header
-                leftComponent={{ onPress: () => navigation.navigate('Menu'), 'icon': 'menu' }}
-                centerComponent={{ text: 'Account Detail' }}
-            />
+            <CommonHeader heading="Account Details" />
             <ScrollView >
                 {account && <PricingCard
                     color="#3e3b33"
