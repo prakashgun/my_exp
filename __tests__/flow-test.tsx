@@ -35,7 +35,9 @@ jest.mock('../src/common/dbQueries', () => {
         ...originalModule,
         default: jest.fn(() => ''),
         getAccounts: jest.fn(() => accounts),
-        getCategories: jest.fn(() => categories)
+        getAccount: jest.fn(() => accounts[0]),
+        getCategories: jest.fn(() => categories),
+        setAccount: jest.fn(() => '')
     };
 
 })
@@ -135,7 +137,9 @@ describe('Main flow', () => {
         jest.spyOn(Alert, 'alert')
 
         fireEvent.press(screen.getByText('Bank 1'))
-        expect(await screen.findByText('Account Details')).toBeTruthy()
+        fireEvent.press(await screen.findByText('Delete'))
+
+        expect(Alert.alert).toBeCalled()
     })
 
     test('Go to Menu', async ()=>{
@@ -145,19 +149,9 @@ describe('Main flow', () => {
             jest.runAllTimers()
         })
 
-
         expect(await screen.findByText('Accounts')).toBeTruthy()
-
-        // screen.debug()
-
-
         fireEvent.press(screen.getByTestId('menu'))
-
-        // expect(await screen.findByText('Accounts')).toBeTruthy()
-
-
         expect(await screen.getByText('Categories')).toBeTruthy()
-
     })
 
     test('Go to category list', async ()=>{
@@ -168,11 +162,21 @@ describe('Main flow', () => {
         })
 
         fireEvent.press(screen.getByTestId('menu'))
-
         fireEvent.press(screen.getByText('Categories'))
-
         expect(await screen.findByText('Category Items')).toBeTruthy()
         expect(await screen.getByText('Transportation')).toBeTruthy()
         expect(await screen.getByText('Food')).toBeTruthy()
+    })
+
+    test('Go to category detail', async ()=>{
+        render(<App />)
+
+        act(()=>{
+            jest.runAllTimers()
+        })
+
+        fireEvent.press(screen.getByTestId('menu'))
+        fireEvent.press(screen.getByText('Categories'))
+        fireEvent.press(await screen.findByText('Food'))
     })
 })
