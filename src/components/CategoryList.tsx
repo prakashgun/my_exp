@@ -26,7 +26,7 @@ const CategoryList = () => {
 
     return (
         <View style={styles.container}>
-            <CommonHeader heading="Categories" />
+            <CommonHeader heading="Category Items" />
 
             <ScrollView>
                 {

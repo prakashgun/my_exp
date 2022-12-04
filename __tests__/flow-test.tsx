@@ -145,4 +145,18 @@ describe('Main flow', () => {
         expect(await screen.getByText('Categories')).toBeTruthy()
 
     })
+
+    test('Go to category list', async ()=>{
+        render(<App />)
+
+        act(()=>{
+            jest.runAllTimers()
+        })
+
+        fireEvent.press(screen.getByTestId('menu'))
+
+        fireEvent.press(screen.getByText('Categories'))
+
+        expect(await screen.findByText('Category Items')).toBeTruthy()
+    })
 })
