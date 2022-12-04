@@ -1,26 +1,27 @@
-import { View, Text } from 'react-native'
-import React, { useEffect } from 'react'
-import { createTables } from './src/common/dbQueries'
-import { Icon } from '@rneui/themed'
+import { NavigationContainer } from '@react-navigation/native';
+import { createTheme, lightColors, ThemeProvider } from '@rneui/themed';
+import React from 'react';
+import { Platform } from 'react-native';
+import AppNavigator from './src/components/AppNavigator';
+
+
+const theme = createTheme({
+  lightColors: {
+    ...Platform.select({
+      default: lightColors.platform.android,
+      ios: lightColors.platform.ios,
+    }),
+  },
+});
 
 const App = () => {
-
-  const initialSetup = async () => {
-    await createTables()
-  }
-
-  useEffect(() => {
-    initialSetup()
-  }, [])
-  
   return (
-    <View>
-      <Text>App</Text>
-      <Icon
-        name='rowing' />
-
-    </View>
-  )
+    <ThemeProvider theme={theme}>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </ThemeProvider>
+  );
 }
 
 export default App
