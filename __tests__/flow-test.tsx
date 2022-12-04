@@ -121,8 +121,28 @@ describe('Main flow', () => {
         jest.spyOn(Alert, 'alert')
 
         fireEvent.press(screen.getByText('Bank 1'))
-        // expect(await screen.getByText('Bank 1')).toBeTruthy()
         expect(await screen.findByText('Account Details')).toBeTruthy()
+    })
+
+    test('Go to Menu', async ()=>{
+        render(<App />)
+
+        act(()=>{
+            jest.runAllTimers()
+        })
+
+
+        expect(await screen.findByText('Accounts')).toBeTruthy()
+
+        // screen.debug()
+
+
+        fireEvent.press(screen.getByTestId('menu'))
+
+        // expect(await screen.findByText('Accounts')).toBeTruthy()
+
+
+        expect(await screen.getByText('Categories')).toBeTruthy()
 
     })
 })
