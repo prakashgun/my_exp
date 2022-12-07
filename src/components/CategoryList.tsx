@@ -1,5 +1,5 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native'
-import { Button, Header, Icon } from '@rneui/base'
+import { Button } from '@rneui/base'
 import React, { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { getCategories } from '../common/dbQueries'

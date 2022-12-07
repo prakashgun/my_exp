@@ -34,7 +34,7 @@ const Menu = () => {
                     </ListItem.Content>
                 </ListItem>
             </TouchableOpacity>
-            {/* <TouchableOpacity
+            <TouchableOpacity
                 onPress={() => navigation.navigate('TransactionList')}
             >
                 <ListItem key="TransactionList" bottomDivider>
@@ -53,7 +53,7 @@ const Menu = () => {
                         <ListItem.Title>Import Transactions</ListItem.Title>
                     </ListItem.Content>
                 </ListItem>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
         </View>
     )
 }
