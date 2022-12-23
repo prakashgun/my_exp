@@ -1,12 +1,12 @@
-import { Icon, Input, ListItem, Overlay, Text } from '@rneui/base'
+import { Button, FAB, Icon, ListItem, Overlay, Text } from '@rneui/base'
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import TransactionTypeInterface from '../interfaces/TransactionTypeInterface'
 import TransactionTypeSelectInterface from '../interfaces/TransactionTypeSelectInterface'
 
 
 const TransactionTypeSelect = ({
-    transactionTypes, selectedTransactionType, setSelectedTransactionType
+    transactionTypes, selectedTransactionType, setSelectedTransactionType, inputButtonStyle
 }: TransactionTypeSelectInterface) => {
 
     const [transactionTypesExpanded, setTransactionTypesExpanded] = useState<boolean>(false)
@@ -21,17 +21,13 @@ const TransactionTypeSelect = ({
     }
 
     return (
-        <View>
-            <TouchableOpacity onPress={toggleTransactionTypesOverlay}>
-                {selectedTransactionType && <Input
-                    placeholder={`Type: ${selectedTransactionType.name}`}
-                    leftIcon={{ type: selectedTransactionType.icon_type, name: selectedTransactionType.icon_name }}
-                    onChangeText={() => console.log('Type selected')}
-                    style={styles.input}
-                    disabled
-                    disabledInputStyle={styles.disabled_input}
-                />}
-            </TouchableOpacity>
+        <View style={styles.container}>
+            <Button
+            buttonStyle={inputButtonStyle}
+                onPress={toggleTransactionTypesOverlay}
+                title={`${selectedTransactionType.name}`}
+                icon={{ type: selectedTransactionType.icon_type, name: selectedTransactionType.icon_name, color: 'white' }}
+            />
             <Overlay fullScreen={true} isVisible={transactionTypesExpanded} onBackdropPress={toggleTransactionTypesOverlay}>
                 <Text h4>Select Type</Text>
                 <ScrollView>
@@ -52,8 +48,7 @@ const TransactionTypeSelect = ({
 export default TransactionTypeSelect
 
 const styles = StyleSheet.create({
-    input: {},
-    disabled_input: {
-        opacity: 1
+    container: {
+        padding: 5
     }
 })

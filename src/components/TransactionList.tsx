@@ -1,11 +1,12 @@
 import { useNavigation } from '@react-navigation/core'
 import { useIsFocused } from '@react-navigation/native'
+import { Button, Icon } from '@rneui/base'
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native'
 import DatePicker from 'react-native-date-picker'
-import { Button, Header, Icon } from '@rneui/base'
 import { createTables, getTransactions } from '../common/dbQueries'
 import TransactionInterface from '../interfaces/TransactionInterface'
+import CommonHeader from './CommonHeader'
 import TransactionItem from './TransactionItem'
 
 
@@ -54,10 +55,8 @@ const TransactionList = () => {
     return (
         <View style={styles.container}>
             <ScrollView >
-                <Header
-                    leftComponent={{ onPress: () => navigation.navigate('Menu') }}
-                    centerComponent={{ text: 'Transactions' }}
-                />
+                <CommonHeader heading="Category Items" />
+
                 <View style={styles.date_menu_panel}>
                     <DatePicker mode="date" androidVariant="nativeAndroid" date={transactionDate} onDateChange={setTransactionsFromDb} />
                     <View style={styles.date_quick_nav}>

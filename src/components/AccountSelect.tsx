@@ -1,3 +1,4 @@
+import { Button } from '@rneui/base'
 import { Icon, Input, ListItem, Overlay, Text } from '@rneui/themed'
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
@@ -5,14 +6,19 @@ import AccountInterface from '../interfaces/AccountInterface'
 import AccountSelectInterface from '../interfaces/AccountSelectInterface'
 
 
-const AccountSelect = ({ accounts, selectedAccount, setSelectedAccount, selectedTransactionType = null, isFromAccount = true }: AccountSelectInterface) => {
+const AccountSelect = (
+    { 
+        accounts, selectedAccount, setSelectedAccount, selectedTransactionType = null, isFromAccount = true,
+        inputButtonStyle
+    }: AccountSelectInterface
+    ) => {
 
     const [accountsExpanded, setAccountsExpanded] = useState<boolean>(false)
     let placeholder = 'Account:'
 
     if (selectedTransactionType && selectedTransactionType.name) {
         if (selectedTransactionType.name === 'Transfer') {
-            placeholder = isFromAccount ? 'From Account:' : 'To Account:'
+            placeholder = isFromAccount ? 'From:' : 'To:'
         }
     }
 
@@ -26,17 +32,13 @@ const AccountSelect = ({ accounts, selectedAccount, setSelectedAccount, selected
     }
 
     return (
-        <View>
-            <TouchableOpacity onPress={toggleAccountsOverlay}>
-                {selectedAccount && <Input
-                    placeholder={placeholder + ' ' + selectedAccount.name}
-                    leftIcon={{ type: "font-awesome", name: "bank" }}
-                    onChangeText={() => console.log('Account selected')}
-                    style={styles.input}
-                    disabled
-                    disabledInputStyle={styles.disabled_input}
-                />}
-            </TouchableOpacity>
+        <View style={styles.container}>
+            <Button
+                onPress={toggleAccountsOverlay}
+                title={placeholder + ' ' + selectedAccount.name}
+                icon={{ type: "font-awesome", name: "bank", color: 'white' }}
+                buttonStyle={inputButtonStyle}
+            />
             <Overlay fullScreen={true} isVisible={accountsExpanded} onBackdropPress={toggleAccountsOverlay}>
                 <Text h4>Select Account</Text>
                 <ScrollView>
@@ -57,7 +59,9 @@ const AccountSelect = ({ accounts, selectedAccount, setSelectedAccount, selected
 export default AccountSelect
 
 const styles = StyleSheet.create({
-    input: {},
+    container: {
+        padding: 5
+    },
     disabled_input: {
         opacity: 1
     }

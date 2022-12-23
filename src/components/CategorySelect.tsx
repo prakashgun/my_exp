@@ -1,11 +1,11 @@
-import { Icon, Input, ListItem, Overlay, Text } from '@rneui/base'
+import { Button, FAB, Icon, ListItem, Overlay, Text } from '@rneui/base'
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import CategoryInterface from '../interfaces/CategoryInterface'
 import CategorySelectInterface from '../interfaces/CategorySelectInterface'
 
 
-const CategorySelect = ({ categories, selectedCategory, setSelectedCategory }: CategorySelectInterface) => {
+const CategorySelect = ({ categories, selectedCategory, setSelectedCategory, inputButtonStyle }: CategorySelectInterface) => {
 
     const [categoriesExpanded, setCategoriesExpanded] = useState<boolean>(false)
 
@@ -19,17 +19,13 @@ const CategorySelect = ({ categories, selectedCategory, setSelectedCategory }: C
     }
 
     return (
-        <View>
-            <TouchableOpacity onPress={toggleCategoriesOverlay}>
-                {selectedCategory && <Input
-                    placeholder={`Category: ${selectedCategory.name}`}
-                    leftIcon={{ type: selectedCategory.icon_type, name: selectedCategory.icon_name }}
-                    onChangeText={() => console.log('Catgeory selected')}
-                    style={styles.input}
-                    disabled
-                    disabledInputStyle={styles.disabled_input}
-                />}
-            </TouchableOpacity>
+        <View style={styles.container}>
+            <Button
+                onPress={toggleCategoriesOverlay}
+                title={`${selectedCategory.name}`}
+                icon={{ type: selectedCategory.icon_type, name: selectedCategory.icon_name, color: 'white' }}
+                buttonStyle={inputButtonStyle}
+            />
             <Overlay fullScreen={true} isVisible={categoriesExpanded} onBackdropPress={toggleCategoriesOverlay}>
                 <Text h4>Select Category</Text>
                 <ScrollView>
@@ -50,8 +46,7 @@ const CategorySelect = ({ categories, selectedCategory, setSelectedCategory }: C
 export default CategorySelect
 
 const styles = StyleSheet.create({
-    input: {},
-    disabled_input: {
-        opacity: 1
+    container: {
+        padding: 5
     }
 })

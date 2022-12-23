@@ -126,17 +126,13 @@ const AddTransaction = ({ navigation, route }: any) => {
                             transactionTypes={transactionTypes}
                             selectedTransactionType={selectedTransactionType}
                             setSelectedTransactionType={setSelectedTransactionType}
+                            inputButtonStyle={styles.inputButtonStyle} 
                         />}
-                    <Input
-                        placeholder="Value"
-                        leftIcon={{ type: 'material-icons', name: 'account-balance-wallet' }}
-                        keyboardType="numeric"
-                        onChangeText={setValue}
-                    />
                     {categories && selectedCategory && <CategorySelect
                         categories={categories}
                         selectedCategory={selectedCategory}
-                        setSelectedCategory={setSelectedCategory}
+                        setSelectedCategory={setSelectedCategory} 
+                        inputButtonStyle={styles.inputButtonStyle}               
                     />}
                     {accounts && selectedAccount && selectedTransactionType &&
                         <AccountSelect
@@ -145,6 +141,7 @@ const AddTransaction = ({ navigation, route }: any) => {
                             setSelectedAccount={setSelectedAccount}
                             selectedTransactionType={selectedTransactionType}
                             isFromAccount={true}
+                            inputButtonStyle={styles.inputButtonStyle}
                         />}
                     {accounts && selectedToAccount && selectedTransactionType && selectedTransactionType.name === 'Transfer' &&
                         <AccountSelect
@@ -153,7 +150,14 @@ const AddTransaction = ({ navigation, route }: any) => {
                             setSelectedAccount={setSelectedToAccount}
                             selectedTransactionType={selectedTransactionType}
                             isFromAccount={false}
+                            inputButtonStyle={styles.inputButtonStyle}
                         />}
+                                            <Input
+                        placeholder="Value"
+                        leftIcon={{ type: 'material-icons', name: 'account-balance-wallet' }}
+                        keyboardType="numeric"
+                        onChangeText={setValue}
+                    />
                     <Input
                         placeholder="Note (Optional)"
                         leftIcon={{ type: 'font-awesome', name: 'sticky-note' }}
@@ -174,5 +178,12 @@ const styles = StyleSheet.create({
     input: {},
     disabled_input: {
         opacity: 1
+    },
+    inputButtonStyle:{
+        backgroundColor:"olive",
+        borderColor: 'transparent',
+        borderWidth: 0,
+        borderRadius: 5,
+        padding: 5
     }
 })
