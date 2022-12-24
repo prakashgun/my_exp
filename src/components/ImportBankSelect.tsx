@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Input, ListItem, Overlay, Text } from '@rneui/base'
+import { Button, Input, ListItem, Overlay, Text } from '@rneui/base'
 import ImportBankInterface from '../interfaces/ImportBankInterface'
 import ImportBankSelectInterface from '../interfaces/ImportBankSelectInterface'
 
 
 const ImportBankSelect = ({
-    importBanks, selectedImportBank, setSelectedImportBank
+    importBanks, selectedImportBank, setSelectedImportBank, inputButtonStyle
 }: ImportBankSelectInterface) => {
 
     const [importBanksExpanded, setImportBanksExpanded] = useState<boolean>(false)
@@ -21,17 +21,13 @@ const ImportBankSelect = ({
     }
 
     return (
-        <View>
-            <TouchableOpacity onPress={toggleImportBanksOverlay}>
-                {selectedImportBank && <Input
-                    placeholder={`Import Type: ${selectedImportBank.name}`}
-                    leftIcon={{ type: "font-awesome", name: "bank" }}
-                    onChangeText={() => console.log('Type selected')}
-                    style={styles.input}
-                    disabled
-                    disabledInputStyle={styles.disabled_input}
-                />}
-            </TouchableOpacity>
+        <View style={styles.container}>
+            <Button
+                onPress={toggleImportBanksOverlay}
+                title={`Import Type: ${selectedImportBank.name}`}
+                icon={{ type: "font-awesome", name: "bank", color: 'white' }}
+                buttonStyle={inputButtonStyle}
+            />
             <Overlay fullScreen={true} isVisible={importBanksExpanded} onBackdropPress={toggleImportBanksOverlay}>
                 <Text h4>Select Import Bank</Text>
                 <ScrollView>
@@ -51,8 +47,7 @@ const ImportBankSelect = ({
 export default ImportBankSelect
 
 const styles = StyleSheet.create({
-    input: {},
-    disabled_input: {
-        opacity: 1
+    container: {
+        padding: 5
     }
 })

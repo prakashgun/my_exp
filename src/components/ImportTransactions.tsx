@@ -1,9 +1,9 @@
 import { useIsFocused } from '@react-navigation/native'
+import { Input } from '@rneui/base'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity, View } from 'react-native'
 import DocumentPicker from 'react-native-document-picker'
-import { Header, Input } from '@rneui/base'
 import { readFile } from 'react-native-fs'
 import uuid from 'react-uuid'
 import XLSX from 'xlsx'
@@ -18,6 +18,7 @@ import CategoryInterface from '../interfaces/CategoryInterface'
 import ImportBankInterface, { importBanks } from '../interfaces/ImportBankInterface'
 import ImportRecordInterface from '../interfaces/ImportRecordInterface'
 import AccountSelect from './AccountSelect'
+import CommonHeader from './CommonHeader'
 import ImportBankSelect from './ImportBankSelect'
 
 
@@ -406,15 +407,13 @@ const ImportTransactions = ({ navigation, route }: any) => {
 
     return (
         <View>
-            <Header
-                leftComponent={{ onPress: () => navigation.navigate('Menu') }}
-                centerComponent={{ text: 'Add Transaction' }}
-            />
+            <CommonHeader heading="Add Transaction" />
             {importBanks && selectedImportBank &&
                 <ImportBankSelect
                     importBanks={importBanks}
                     selectedImportBank={selectedImportBank}
                     setSelectedImportBank={setSelectedImportBank}
+                    inputButtonStyle={styles.inputButtonStyle}
                 />}
             {selectedImportBank.name !== 'Other' && accounts && selectedToAccount &&
                 <AccountSelect
@@ -422,6 +421,7 @@ const ImportTransactions = ({ navigation, route }: any) => {
                     selectedAccount={selectedToAccount}
                     setSelectedAccount={setSelectedToAccount}
                     isFromAccount={false}
+                    inputButtonStyle={styles.inputButtonStyle}
                 />}
             {isLoading ? <ActivityIndicator size="large" color="#3e3b33" /> :
                 <TouchableOpacity onPress={onSelectFilePress}>
@@ -446,5 +446,12 @@ const styles = StyleSheet.create({
     input: {},
     disabled_input: {
         opacity: 1
+    },
+    inputButtonStyle: {
+        backgroundColor: "olive",
+        borderColor: 'transparent',
+        borderWidth: 0,
+        borderRadius: 5,
+        padding: 5
     }
 })
