@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     date_menu_panel: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignSelf:"center"
     },
     date_quick_nav: {
         justifyContent: 'space-around',
