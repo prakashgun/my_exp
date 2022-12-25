@@ -1,5 +1,5 @@
 import { useIsFocused } from '@react-navigation/native'
-import { Input } from '@rneui/base'
+import { Button, Input } from '@rneui/base'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity, View } from 'react-native'
@@ -406,7 +406,7 @@ const ImportTransactions = ({ navigation, route }: any) => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <CommonHeader heading="Add Transaction" />
             {importBanks && selectedImportBank &&
                 <ImportBankSelect
@@ -423,16 +423,16 @@ const ImportTransactions = ({ navigation, route }: any) => {
                     isFromAccount={false}
                     inputButtonStyle={styles.inputButtonStyle}
                 />}
+
             {isLoading ? <ActivityIndicator size="large" color="#3e3b33" /> :
-                <TouchableOpacity onPress={onSelectFilePress}>
-                    <Input
-                        placeholder='Select file to import (.xls, .xlsx)'
-                        leftIcon={{ type: 'antdesign', name: 'select1' }}
-                        style={styles.input}
-                        disabled
-                        disabledInputStyle={styles.disabled_input}
+                <View style={styles.selectFile}>
+                    <Button
+                        onPress={onSelectFilePress}
+                        title="Select file to import (.xls, .xlsx)"
+                        icon={{ type: "antdesign", name: "select1", color: 'white' }}
+                        buttonStyle={styles.inputButtonStyle}
                     />
-                </TouchableOpacity>}
+                </View>}
         </View>
     )
 }
@@ -452,6 +452,9 @@ const styles = StyleSheet.create({
         borderColor: 'transparent',
         borderWidth: 0,
         borderRadius: 5,
+        padding: 5
+    },
+    selectFile: {
         padding: 5
     }
 })
