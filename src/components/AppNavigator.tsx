@@ -7,6 +7,7 @@ import AddCategory from './AddCategory'
 import AddTransaction from './AddTransaction'
 import CategoryList from './CategoryList'
 import CategoryScreen from './CategoryScreen'
+import EditTransaction from './EditTransaction'
 import ImportTransactions from './ImportTransactions'
 import Menu from './Menu'
 import TransactionList from './TransactionList'
@@ -19,7 +20,7 @@ const AppNavigator = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="TransactionList" component={TransactionList} />
       <Stack.Screen name="AddTransaction" component={AddTransaction} />
-      <Stack.Screen name="EditTransaction" component={AddTransaction} />
+      <Stack.Screen name="EditTransaction" component={EditTransaction} />
       <Stack.Screen name="TransactionScreen" component={TransactionScreen} />
       <Stack.Screen name="ImportTransactions" component={ImportTransactions} />
 
