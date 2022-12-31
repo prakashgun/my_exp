@@ -58,7 +58,7 @@ const TransactionList = () => {
                 <CommonHeader heading="Category Items" />
 
                 <View style={styles.date_menu_panel}>
-                    <DatePicker mode="date" androidVariant="nativeAndroid" date={transactionDate} onDateChange={setTransactionsFromDb} />
+                    <DatePicker textColor="black" mode="date" androidVariant="nativeAndroid" date={transactionDate} onDateChange={setTransactionsFromDb} />
                     <View style={styles.date_quick_nav}>
                         <Icon name="caretup" type="ant-design" onPress={decreaseDay} />
                         <Icon name="today" type="ion-icons" onPress={currentDay} />
