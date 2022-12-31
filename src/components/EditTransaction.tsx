@@ -264,7 +264,7 @@ const EditTransaction = ({ navigation, route }: any) => {
                             isFromAccount={false}
                             inputButtonStyle={styles.inputButtonStyle}
                         />}
-                                          <Input
+                    <Input
                         placeholder="Value"
                         leftIcon={{ type: 'material-icons', name: 'account-balance-wallet' }}
                         keyboardType="numeric"
